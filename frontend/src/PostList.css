@@ -1,0 +1,475 @@
+/* src/components/PostList.css */
+.welcome-section {
+  text-align: center;
+  background: linear-gradient(#77a5d5, #0a67c5, #77a5d5); /* Navy blue gradient */
+  padding: 50px 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  height: 60vh; /* Laptop-friendly height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-section h1 {
+  font-size: 38px;
+  color: #ffffff; /* White for contrast against navy blue */
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #ffffff; /* White for a clean look */
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.welcome-section p {
+  font-size: 20px;
+  color: #dcdcdc; /* Light grey text for readability */
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-style: italic;
+}
+
+/* Add a subtle fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-section h1, .welcome-section p {
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+
+.heading-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Align vertically */
+  width: 100%;
+  background-color: #bab6b6; /* Light background for contrast */
+  margin-top: 0; /* Remove any margin on top */
+  padding: 0; /* Remove any padding */
+}
+
+
+.center-heading {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: #333; /* Dark color for better visibility */
+}
+
+
+.post-list-container {
+  background-color: #bab6b6;
+  display: flex;
+  justify-content: center; /* Center the grid */
+  width: 100%;
+  padding: 20px 0; /* Add some padding at the top and bottom */
+}
+
+.post-list {
+  width: 100%;
+  max-width: 1200px; /* Adjust width to fit 4 containers properly */
+  display: grid;
+  grid-template-columns: repeat(4, 2fr); /* 4 containers per row */
+  gap: 20px;
+  padding: 0 200px; /* Add padding to ensure space on left and right */
+}
+
+
+
+.post-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 400px; /* Fixed height for the post card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.post-card h3 {
+  margin-bottom: 10px;
+}
+
+.post-description {
+  height: 100px; /* Initially show a small portion of the description */
+  overflow: hidden; /* Hide the rest of the description */
+  transition: height 0.3s ease; /* Smooth transition when expanding */
+  margin-bottom: 10px;
+}
+
+.read-more-link {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.read-more-link:hover {
+  text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 800px;  /* Increased width of the modal */
+  max-height: 90%; /* Prevent the modal from growing beyond 90% of the screen height */
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden; /* No scrollbar for modal content */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;  /* Make the image scale responsively */
+  max-height: 300px; /* Limit the height of the image to 300px */
+  object-fit: contain; /* Ensure the image doesn't stretch/distort */
+  border-radius: 4px;
+  margin-bottom: 15px; /* Uniform gap below image */
+}
+
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 15px; /* Uniform gap below title */
+  text-align: center;
+}
+
+.modal-description {
+  font-size: 16px;
+  line-height: 1.5;
+  max-height: none; /* No height limit for description */
+  word-wrap: break-word;
+  margin-bottom: 15px; /* Uniform gap below description */
+}
+/* Styling for the "Show Less" link inside the modal */
+.show-less-link {
+  display: inline-block;
+  margin-top: 15px; /* Uniform margin at the top of the link */
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;  /* Align to the left */
+  width: 100%; /* Take up full width to align left */
+}
+
+
+.show-less-link:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Make modal take more width on small screens */
+  }
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;  /* Make the image scale responsively */
+  max-height: 300px; /* Limit the height of the image to 300px */
+  object-fit: contain; /* Ensure the image doesn't stretch/distort */
+  border-radius: 4px;
+  margin-bottom: 15px; /* Uniform gap below image */
+}
+
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 15px; /* Uniform gap below title */
+  text-align: center;
+}
+
+.modal-description {
+  font-size: 16px;
+  line-height: 1.5;
+  max-height: none; /* No height limit for description */
+  word-wrap: break-word;
+  margin-bottom: 15px; /* Uniform gap below description */
+}
+
+/* Styling for the "Show Less" link inside the modal */
+.show-less-link {
+  display: inline-block;
+  margin-top: 15px; /* Uniform margin at the top of the link */
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;  /* Align to the left */
+  width: 100%; /* Take up full width to align left */
+}
+
+.show-less-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+/* src/components/PostList.css */
+
+.post-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.update-btn,
+.delete-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.update-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e60000;
+}
+
+
+
+/* Add this to your CSS file */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-2 {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-content-2 h2 {
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-content-2 form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content-2 label {
+  margin-bottom: 5px;
+}
+
+.modal-content-2 input, .modal-content-2 textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.modal-content-2 button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content-2 button:hover {
+  background-color: #3e8e41;
+}
+
+
+.modal-content-2 input, .modal-content-2 textarea {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px; /* Increased font size */
+  width: 100%; /* Make the input field full width */
+  box-sizing: border-box; /* Add this to include padding and border in the width */
+}
+
+.modal-content-2 textarea {
+  height: 150px; /* Set a default height */
+  resize: vertical; /* Allow resizing only vertically */
+  overflow-y: auto; /* Enable vertical scrolling when needed */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 300px; /* Set a max height to prevent expanding too much */
+}
+
+/* Custom scrollbar styling for better UI */
+.modal-content-2 textarea::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.modal-content-2 textarea::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.modal-content-2 textarea::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when hovered */
+}
+
+
+
+
+
+
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+  .post-list {
+    grid-template-columns: repeat(3, 1fr); /* Show 3 posts per row */
+    padding: 0 100px; /* Reduce side padding */
+  }
+}
+
+@media (max-width: 992px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 posts per row */
+    padding: 0 50px; /* Further reduce side padding */
+  }
+
+  .modal-content {
+    width: 85%; /* Reduce modal width */
+  }
+}
+
+@media (max-width: 768px) {
+  .post-list {
+    grid-template-columns: repeat(1, 1fr); /* Show 1 post per row */
+    padding: 0 20px; /* Further reduce padding */
+  }
+
+  .post-card {
+    height: auto; /* Allow cards to adjust their height */
+  }
+
+  .modal-content {
+    width: 90%;
+    max-height: 80vh; /* Prevent it from taking the full height */
+    overflow-y: auto; /* Allow scrolling inside the modal */
+  }
+}
+
+@media (max-width: 480px) {
+  .center-heading {
+    font-size: 22px; /* Reduce font size for better fit */
+  }
+
+  .post-card {
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .modal-title {
+    font-size: 20px; /* Adjust modal title size */
+  }
+
+  .modal-description {
+    font-size: 14px; /* Adjust description font size */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
