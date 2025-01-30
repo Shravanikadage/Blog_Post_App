@@ -10,7 +10,7 @@ const PostList = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await axios.get("http://localhost:5000/api/posts");
+      const response = await axios.get("https://blog-post-app-backend.vercel.app/api/posts");
       setPosts(response.data);
     };
     fetchPosts();
@@ -48,7 +48,7 @@ const PostList = () => {
   const handleSaveEdit = async () => {
     try {
       console.log('Updated post ID:', updatedPost._id);
-      const response = await axios.put(`http://localhost:5000/api/posts/${updatedPost._id}`, {
+      const response = await axios.put(`https://blog-post-app-backend.vercel.app/api/posts/${updatedPost._id}`, {
         title: updatedPost.title,
         description: updatedPost.description,
         image: updatedPost.image,
@@ -78,7 +78,7 @@ const PostList = () => {
             posts.map((post) => (
               <div key={post._id} className="post-card">
                 {post.image && (
-                  <img src={`http://localhost:5000${post.image}`} alt={post.title} className="post-image" />
+                  <img src={https://blog-post-app-backend.vercel.app${post.image}`} alt={post.title} className="post-image" />
                 )}
                 <h3>{post.title}</h3>
                 <div className="post-description">
@@ -105,7 +105,7 @@ const PostList = () => {
           <div className="modal-overlay" onClick={handleShowLess}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               {selectedPost.image && (
-                <img src={`http://localhost:5000${selectedPost.image}`} alt={selectedPost.title} className="modal-image" />
+                <img src={`https://blog-post-app-backend.vercel.app${selectedPost.image}`} alt={selectedPost.title} className="modal-image" />
               )}
               <h3>{selectedPost.title}</h3>
               <p>{selectedPost.description}</p>
