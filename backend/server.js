@@ -22,7 +22,16 @@ mongoose.connect(mongoURI, {
 .catch((err) => console.error("Failed to connect to MongoDB", err));
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://blog-post-app-backend.vercel.app"],
+        methods: ["POST","GET"],
+        credentials: true
+    }
+));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
